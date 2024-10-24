@@ -26,9 +26,9 @@ class users(Base):
 
 
 class vote(Base):
-    __tablename__ = "vote"
+    __tablename__ = "vote" 
     user_id = Column(Integer, ForeignKey('users.id', ondelete="CASCADE"),primary_key=True)
     book_id = Column(Integer, ForeignKey('Booksfastapi.id', ondelete="CASCADE"),primary_key=True)
     created_at = Column(TIMESTAMP(timezone=True), server_default=text('now()'), nullable=False)
     user = relationship("users")
-    book = relationship("Book", back_populates="votes")
+    book = relationship("Book", back_populates="votes") 

@@ -42,8 +42,8 @@ def sqlalchemy(db: Session = Depends(get_db),  current_user: int = Depends(oauth
 
 @app.post("/create_new_book", response_model=schemas.BookInDB, status_code=status.HTTP_201_CREATED)
 def create_new_book(book: schemas.BookCreate, db: Session = Depends(get_db)):
-    if not book.created_at:
-        book.created_at = datetime.utcnow()
+    if not book.created_at: 
+        book.created_at = datetime.utcnow() 
 
     db_book = models.Book(**book.dict())
     db.add(db_book)
@@ -75,7 +75,7 @@ def update_book(id: int, book_data: schemas.BookCreate, db: Session = Depends(ge
 
     for key, value in book_data.dict().items():
         setattr(book, key, value)
-    db.commit()
+    db.commit()    
     db.refresh(book)
     return {"message": "Book updated successfully", "book": book}
 
